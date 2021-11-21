@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 offset-md-2 mt-5 p-0 post-container">
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <h4 class="h4">Detalles del cliente</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Administrador</label>
+                        <p><b>{{ client.user.username}}</b></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre </label>
+                        <p><b>{{ client.first_name}}</b></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <p><b>{{ client.last_name}}</b></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Iban</label>
+                        <p><b>{{ client.iban }}</b></p>
+                    </div>
+                    <div class="form-group">
+                        <a href="/" class="btn btn-primary btn-block mt-5">
+                            Volver
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

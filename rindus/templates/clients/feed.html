@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<div class="container mb-6" style="margin-top: 2em;">
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-outline-primary" data-toggle="collapse" href="#collapseFilter" role="button"
+                aria-expanded="false"><i class="fas fa-filter"></i>
+            </a>
+            <div class="collapse" id="collapseFilter">
+                <div class="card card-body">
+                    <form action="/" method="get">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <label>Nombre</label>
+                                <select class="selectpicker form-control" id="first_name" name="first_name"
+                                    data-live-search="true" title="------">
+                                    {% for x in clients_filter %}
+                                    <option value="{{ x.first_name }}">{{ x.first_name }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label>Apellido</label>
+                                <select class="selectpicker form-control" id="last_name" name="last_name" title="------">
+                                {% for x in clients_filter %}
+                                <option value="{{ x.last_name }}">{{ x.last_name }} </option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-right mb-3">
+                            <button class="btn btn-primary mt-4" type="submit">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="text-right mb-3">
+                <a href="/clients/new" class="btn btn-outline-primary mt-4">
+                    + Nuevo
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card card-body">
+        <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <thead class="table table-hover">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Iban</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in clients %}
+                        <tr>
+                            <td><a href="{% url 'clients:detail' client.pk %}">
+                                    {{ client.first_name }}
+                                </a></td>
+                            <td>{{ client.last_name}}</td>
+                            <td>{{ client.iban }}</td>
+                            <td>{% if client.user == request.user  %}
+                                <a href="{% url 'clients:update' client.pk %}" class="btn btn-outline-warning">
+                                    Editar
+                                </a>
+                                <a href="{% url 'clients:delete' client.pk %}" class="btn btn-outline-danger">
+                                    Borrar
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    // url variables in filter
+    const queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+    $("[id=fist_name]").selectpicker('val', urlParams.getAll('first_name'));
+    $("[id=last_name]").selectpicker('val', urlParams.getAll('last_name'));
+</script>
+
+{% endblock %}
+

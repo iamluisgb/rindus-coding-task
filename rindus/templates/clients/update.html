@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 mt-5 p-0  post-container" id="profile-box">
+            <div class="card card-body">
+                <h4 class="mb-4">Actualiza el cliente</h4>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <label>Nombre</label>
+                            <input class="form-control {% if form.name.errors %}is-invalid{% endif %}" type="text" name="first_name"
+                                value='{{ form.first_name.value }}'>
+                            <div class="invalid-feedback">
+                                {% for error in form.first_name.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <label>Apellido</label>
+                            <input class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" type="text" name="last_name"
+                                value='{{ form.last_name.value }}'>
+                            <div class="invalid-feedback">
+                                {% for error in form.last_name.errors %}{{ error }}{% endfor %}
+                            </div>
+                            </div>
+                        <div class="col-12 col-md-4">
+                            <label>Iban</label>
+                            <input class="form-control {% if form.iban.errors %}is-invalid{% endif %}" type="text" name="iban"
+                                value='{{ form.iban.value }}'>
+                            <div class="invalid-feedback">
+                                {% for error in form.iban.errors %}{{ error }}{% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-5">¡Actualizar!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
