@@ -29,3 +29,6 @@ django-redis==4.12.1
 celery==4.4.7
 tornado>=5.0.0,<6.0.0
 flower==0.9.5
+
+# All auth
+django-allauth==0.45.0

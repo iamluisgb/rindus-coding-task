@@ -41,14 +41,21 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.sites',
 ]
 
 THIRD_PARTY_APPS = [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 LOCAL_APPS = [
     'rindus.users.apps.UsersConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+SITE_ID = 1
 
 # Passwords
 PASSWORD_HASHERS = [
@@ -98,6 +105,14 @@ STATICFILES_FINDERS = [
 # Media
 MEDIA_ROOT = str(APPS_DIR('media'))
 MEDIA_URL = '/media/'
+
+# Login
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = LOGIN_URL
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 
 
 
