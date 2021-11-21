@@ -1,0 +1,31 @@
+{% extends "users/base.html" %}
+
+{% block container %}
+{% if form.errors %}
+<p class="alert alert-danger">
+    Tu usuario y contraseña no coinciden. Por favor, inténtalo de nuevo.
+</p>
+{% endif%}
+<form method="POST" action="{% url  'users:login' %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <input class="form-control" type="text" placeholder="email" name="username" />
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="password" placeholder="Contraseña" name="password" />
+    </div>
+    <button class="btn btn-primary btn-block mt-5" type="submit">Inicia sesión</button>
+</form>
+<p class="mt-4">¿No tienes una cuenta todavía? <a href="{% url  'users:signup' %}">Regístrate aquí</a></p>
+
+<p class="mt-6">
+    <div class="col-md-6">
+        <a class="btn btn-outline-dark" href="/accounts/google/login/?process=login" role="button" style="text-transform:none">
+            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Login con Google
+        </a>
+    </div>
+</p>
+
+{% endblock %}
