@@ -28,6 +28,8 @@ docker-compose -f local.yml up
 
 # Testing
 
+Time for tests. We need to create 2 administrators(users). Then we can test that users can create and manipulate users(clients) and that manipulation operations on a client only are allow to users who create them.
+
 To run test execute:
 
 ```bash
