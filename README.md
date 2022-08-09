@@ -1,6 +1,5 @@
 # Rindus Bank
 
-This app is available in: www.raiatech.com
 
 ## Requirements
 
